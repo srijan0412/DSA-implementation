@@ -1,7 +1,5 @@
-node* arr = new node(1);
-    ins(arr,2);
-    ins(arr,3);
-    ins(arr,4);
-    ins(arr,5);
-    ins(arr,6);
-    display(arr);
+Node* head = l.begin();
+    while (head != NULL){
+        cout << head->getData() << " -> ";
+        head = head->next;
+    }
