@@ -29,6 +29,15 @@ class Stack {
         }
         top--;
     }
+    // int pop(){
+    //     if (top == -1){
+    //         cout << "No element to pop" << endl;
+    //         return;
+    //     }
+    //     int r = arr[top];
+    //     top--;
+    //     return r;
+    // }
 
     int Top(){
         if (top == -1){
@@ -56,6 +65,7 @@ int main(){
     st.push(30);
     st.push(40);
     st.push(50);
+    cout << st.empty() << endl;
     // cout << st.Top() << endl;
     st.pop();
     st.pop();
