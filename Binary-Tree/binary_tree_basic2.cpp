@@ -1,8 +1,12 @@
-#include <bits/stdc++.h>
 #include <iostream>
 using namespace std;
 
 // Input : 1 2 4 -1 -1 5 7 -1 -1 -1 3 -1 6 -1 -1
+
+// Preorder output: 1 2 4 5 7 3 6
+// Inorder Output: 4 2 7 5 1 3 6
+// Postorder output: 4 7 5 2 6 3 1
+
 
 // Note class for the binary tree 
 class Node {
@@ -29,25 +33,48 @@ Node* buildTree(){
     Node* n = new Node(d);
     n->left = buildTree();
     n->right = buildTree();
-    cout << "running_buildtree" << endl;
     return n;
 }
 
-// prints all the nodes in Preorder traversal form 
+
+// prints all the nodes in Preorder traversal form ( Node -> left -> right )
 void printPreorder(Node* root){
-    if (root = NULL){
+    if (root == NULL){
         return;
     }
-    // cout << "running_printpreorder" << endl;
 
     cout << root->data << " ";
     printPreorder(root->left);
     printPreorder(root->right);
 }
-// Notrunning  
+
+// prints all the nodes in Inorder traversal form (rootnode -> leftsubtree -> rightsubtree)
+void printInorder(Node* root){
+    if (root == NULL){
+        return;
+    }
+
+    printInorder(root->left);
+    cout << root->data << " ";
+    printInorder(root->right);
+}
+// prints all the nodes in postorder traversal form (leftSubtree -> rightsubtree -> rootnode)
+void printPostorder(Node* root){
+    if (root == NULL){
+        return;
+    }
+
+    printPostorder(root->left);
+    printPostorder(root->right);
+    cout << root->data << " ";
+}
 
 int main(){
     Node* root = buildTree();
     printPreorder(root);
+    cout << endl;
+    printInorder(root);
+    cout << endl;
+    printPostorder(root);
     return 0;
 }
