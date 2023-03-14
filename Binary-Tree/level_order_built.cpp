@@ -75,8 +75,21 @@ void PrintLevelOrder(Node* root){
     return;
 }
 
+// helper function -> Height()
+// it returns the height of the tree 
+int height(Node* root){
+    if (root == NULL){
+        return 0;
+    }
+    int l = height(root->left);
+    int r = height(root->right);
+    return 1 + max(l,r);
+}
+
 int main(){
     Node* root = levelOrderBuild();
     PrintLevelOrder(root);
+    cout << endl;
+    cout << height(root) << endl;;
     return 0;
 }
