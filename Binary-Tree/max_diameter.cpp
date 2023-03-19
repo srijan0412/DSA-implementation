@@ -57,47 +57,39 @@ Node* levelOrderBuild(){
     return root;
 }
 
-// Function to print all the elements present in kth level of a binary tree 
-vector<int> printKthLevel(Node* root, int k){
-    vector<int> ans;
-    queue<Node*> line;
-
-    line.push(root);
-    line.push(NULL);
-
-    int level = 0;
-    while (!line.empty()){
-        Node* temp = line.front();
-        
-        if (temp == NULL){
-            line.pop();
-            level++;
-            // Insert a new NULL for next level 
-            if (!line.empty()){
-                line.push(NULL);
-            }
-        }
-        else {
-            line.pop();
-            if (level == k){
-                ans.push_back(temp->data);
-            }
-            if(temp->left){
-                line.push(temp->left);
-            }
-            if(temp->right){
-                line.push(temp->right);
-            }
-        }
+// Helper Function is used to calculate the height of the tree
+int height(Node* root){
+    // base case 
+    if (root == NULL){
+        return 0;
     }
-    return ans;
+
+    // recursive case 
+    int l = height(root->left);
+    int r = height(root->right);
+    return 1 + max(l,r);
 }
 
-// Input : 2 7 5 -1 9 -1 1 -1 -1 11 4 -1 -1 -1 -1
+// This function prints the maximum diameter of a tree 
+// maximum - diameter : longest distance between two nodes
+// Time complexity : O(n^2)
+int diameter(Node* root){
+    // base case 
+    if (root == NULL){
+        return 0;
+    }
+
+    // recursive case 
+    int h1 = height(root->left) + height(root->right);
+    int h2 = diameter(root->left);
+    int h3 = diameter(root->right);
+    return (max(h1, max(h2, h3)));
+}
+
+// Input : 1 2 4 -1 -1 5 7 -1 -1 -1 3 -1 6 -1 -1
 
 int main(){
-    Node* root = levelOrderBuild();
-    vector <int> ans = printKthLevel(root, 2);
-    for (auto c: ans) cout << c << " ";    
+    Node* root = buildTree();
+    cout << diameter(root);
     return 0;
 }
