@@ -6,7 +6,7 @@ using namespace std;
 // 1. Adjancy Matrix (way1)
 // 2. Adjacency List (vector in c++)
 
-void build_graph() {
+void way1() {
     // This is a Expensive way to store a graph it has space complexity of O[n*m]
     // and the time complexity to store the graph is O[n] 
     int n, m;
@@ -30,12 +30,24 @@ void build_graph() {
     //5 | 0 1 0 0 1 0      Supposing that 5 and 1 has a connection in between
 }
 
-void build_graph2(){
-
-}
-
 int main(){
+    int n, m;
+    cin >> n >> m;
+    vector<int> adj[n+1];
+    for (int i=0; i<m; i++){
+        int u, v;
+        cin >> u >> v;
+
+        // If the graph is undirected:
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+
+        // If the graph is directed:
+        // it means there is an edge only u--->v
+        // adj[u].push_back(v);
+    }
     
     
     return 0;
 }
+// So these are the two ways to store a graph, further we will look on how to store a weight graph
